@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply h-full scroll-smooth;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+}
+
+.light body {
+  @apply bg-slate-50 text-slate-900;
+}
+
+.section-container {
+  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.card-glass {
+  @apply rounded-2xl border border-slate-800/60 bg-slate-900/70 p-6 shadow-soft-lg backdrop-blur-md transition hover:border-brand hover:bg-slate-900;
+}
+
+.timeline-line {
+  @apply absolute left-4 top-0 h-full w-px bg-gradient-to-b from-brand/60 via-slate-700 to-transparent sm:left-1/2;
+}
+
+.timeline-item {
+  @apply relative flex flex-col gap-3 sm:flex-row sm:items-start;
+}
+
+.timeline-point {
+  @apply relative z-10 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand bg-slate-950 shadow-lg;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-xs font-medium text-slate-100;
+}
+
+.badge-ghost {
+  @apply border-transparent bg-slate-800/70;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:bg-cyan-300 hover:shadow-cyan-400/40;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-transparent px-5 py-2 text-sm font-medium text-slate-100 transition hover:border-brand hover:bg-slate-900;
+}
+
+.tag-filter-active {
+  @apply border-brand bg-brand/10 text-brand;
+}
