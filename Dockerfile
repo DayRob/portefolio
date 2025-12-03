@@ -1,35 +1,18 @@
-# ---------- Dependencies ----------
-    FROM node:20 AS deps
-    WORKDIR /app
-    
-    COPY package*.json ./
-    RUN npm install
-    
-    # ---------- Build ----------
-    FROM node:20 AS builder
-    WORKDIR /app
-    
-    COPY --from=deps /app/node_modules ./node_modules
-    COPY . .
-    
-    ENV NEXT_TELEMETRY_DISABLED=1
-    
-    RUN npm run build
-    
-    # ---------- Runner ----------
-    FROM node:20-slim AS runner
-    WORKDIR /app
-    
-    ENV NODE_ENV=production
-    ENV NEXT_TELEMETRY_DISABLED=1
-    
-    # On installe seulement les deps prod pour l’image finale
-    COPY package*.json ./
-    RUN npm install --omit=dev
-    
-    COPY --from=builder /app/public ./public
-    COPY --from=builder /app/.next ./.next
-    
-    EXPOSE 3000
-    CMD ["npm", "start"]
-    
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
