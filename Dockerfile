@@ -15,6 +15,7 @@
     
     ENV NEXT_TELEMETRY_DISABLED=1
     
+    RUN chmod 755 /usr/local/bin/node
     RUN npm run build
     
     # ---------- Runner ----------
