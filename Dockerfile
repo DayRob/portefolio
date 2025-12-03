@@ -1,16 +1,15 @@
 FROM node:18
 
-RUN npm install -g npm@10
-
 WORKDIR /app
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV NEXT_FORCE_WASM=1
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
-
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
 
 RUN npm run build
 
