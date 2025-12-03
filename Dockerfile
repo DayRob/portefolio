@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN ls -R /app && sleep 3600
+
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
