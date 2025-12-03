@@ -3,7 +3,8 @@
     WORKDIR /app
     
     COPY package*.json ./
-    RUN npm install --production=false --unsafe-perm=true
+    RUN chmod -R 755 /app
+    RUN npm install --production=false
     
     # ---------- Build ----------
     FROM node:20 AS builder
