@@ -4,7 +4,7 @@
     
     COPY package*.json ./
     RUN chmod -R 755 /app
-    RUN npm install --production=false
+    RUN npm install --omit=dev
     
     # ---------- Build ----------
     FROM node:20 AS builder
