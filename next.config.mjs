@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true
-  }
+  // Retirez cette section si elle existe :
+  // experimental: {
+  //   swcWasm: true,
+  // },
 };
 
 export default nextConfig;
