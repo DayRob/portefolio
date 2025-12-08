@@ -1,28 +1,17 @@
-FROM node:18-alpine
-
-# Créer un utilisateur non-root
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+FROM node:18-bullseye
 
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
-# Copier les fichiers de dépendances
 COPY package*.json ./
 
-# Installer les dépendances
-RUN npm ci --only=production --ignore-scripts
+RUN npm install
 
-# Copier le reste des fichiers
-COPY --chown=nextjs:nodejs . .
+COPY . .
 
-# Build l'application
 RUN npm run build
-
-# Changer vers l'utilisateur non-root
-USER nextjs
 
 EXPOSE 3000
 
