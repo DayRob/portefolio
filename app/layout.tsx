@@ -7,7 +7,10 @@ import "../styles/globals.css";
 export const metadata: Metadata = {
   title: "Portefolio – Côme VILLEROY de GALHAU",
   description:
-    "Portefolio de Côme VILLEROY de GALHAU, étudiant ingénieur cybersécurité à CPE Lyon, spécialisé en audit, tests d’intrusion et protection des systèmes."
+    "Portefolio de Côme VILLEROY de GALHAU, étudiant ingénieur cybersécurité à CPE Lyon, spécialisé en audit, tests d’intrusion et protection des systèmes.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

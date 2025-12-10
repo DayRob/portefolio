@@ -10,8 +10,7 @@ interface TagFilterProps {
 const OPTIONS: { value: FilterValue; label: string }[] = [
   { value: "all", label: "Tous" },
   { value: "alternance", label: "Alternance" },
-  { value: "stage", label: "Stage" },
-  { value: "projet-perso", label: "Projets perso" }
+  { value: "stage", label: "Stage" }
 ];
 
 export function TagFilter({ value, onChange }: TagFilterProps) {
