@@ -1,5 +1,8 @@
 # AUDIT du portfolio — Côme VILLEROY de GALHAU
 
+> **Statut au 2026-10-01 : audit initial + bilan après refonte (section G en fin de document).**
+> Les sections 0 à F décrivent l'état **avant** la refonte. Elles sont conservées comme référence.
+
 - **Date de l'audit** : 2026-10-01
 - **Commit audité** : `8ef749d` (branche `main`)
 - **Périmètre** : lecture seule du code, de l'historique git, build local, mesures axe-core et Lighthouse sur le build de production servi en local. Aucun fichier du site n'a été modifié.
@@ -354,3 +357,72 @@ Mon avis : l'option 2 est plus robuste pour une vitrine sécurité, l'option 1 r
 4. Accessibilité : correctifs du §C.2, puis axe-core et Lighthouse à 0 erreur.
 5. Sécurité : mise à jour des dépendances, en-têtes, `security.txt`, documentation dans le README.
 6. Commits atomiques (Conventional Commits, en français), poussés sans fusion ni déploiement.
+
+---
+
+## G. Bilan après refonte
+
+### G.1 Réponses reçues et décisions appliquées
+
+| Sujet | Décision |
+|---|---|
+| Hébergement | Auto-hébergé sur Proxmox, derrière Cloudflare avec accès par jeton. Image nginx sans privilèges fournie, en-têtes générés au build |
+| Stack | Next.js conservé, en export statique. Passage à Next.js 15.5 et React 19 pour corriger les failles. Aucun changement de framework |
+| Branche | Tout est poussé sur `claude/portfolio-audit-compliance-j0ycar`. Aucune fusion, aucun déploiement, aucune demande de fusion ouverte |
+| Formulaire de contact | Supprimé (page et API). Remplacé par un e-mail masqué et LinkedIn |
+| Dates et faits non confirmés | Laissés en `[À CONFIRMER]` / `[À COMPLÉTER]`, visibles sur le site |
+| CV | Déposer `public/cv/cv-fr.pdf` et `cv-en.pdf` puis relancer le build : les boutons apparaissent seuls |
+| Téléphone | Retiré de toutes les pages publiques |
+| Historique git | **Non réécrit** : la question n'a pas reçu de réponse. L'e-mail d'école et le chemin Windows de l'ancien README y restent |
+
+### G.2 Mesures avant et après
+
+| Mesure | Avant | Après |
+|---|---|---|
+| `npm audit` | 3 (1 critique, 2 hautes) | **0** |
+| axe-core, violations | 1 à 2 sur l'accueil, 0 ailleurs (bureau) | **0** sur 66 exécutions (11 pages, 3 largeurs, 2 thèmes) |
+| Lighthouse accessibilité | 93 à 100 | **100** sur 9 pages, mobile et bureau |
+| Lighthouse performance | 99 à 100 | 97 à 98 sur mobile, 100 sur bureau |
+| Lighthouse bonnes pratiques et SEO | 100 | 100 |
+| Violations de CSP | Pas de CSP | **0** (testé avec nginx réel ; la détection a été éprouvée par un test négatif) |
+| En-têtes de sécurité | Aucun | 8 (CSP stricte, HSTS, nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP, CORP) |
+| Requêtes tierces, cookies, stockage local | Aucun | Aucun |
+| securityheaders.com et Mozilla Observatory | Non mesurables | **Non mesurés** : le site est derrière Cloudflare Access. À faire une fois public (objectif A+) |
+
+Le score de performance mobile passe sous 100 mais reste au-dessus de l'objectif de 95.
+
+### G.3 Checklist de contenu
+
+- [x] CGI (ex-Apside) en premier, puis Villeroy & Boch, puis les stages plus anciens.
+- [x] Titre « Ingénieur cybersécurité » et accroche annonçant la recherche d'un poste technique (pentest ou infrastructure sécurisée).
+- [x] EBIOS RM, ateliers client, homologation : présents, présentés comme compétence complémentaire.
+- [x] Reconnaissance passive et scan actif : recon-ng, crt.sh, Defender EASM, Aquatone puis OpenVAS.
+- [x] Outils mis en avant : recon-ng, crt.sh, Aquatone, OpenVAS, Defender EASM, Proxmox, SSH/TLS, EBIOS RM.
+- [x] Projets : homelab Proxmox, culture cyber, QG Discord (en cours de construction), entraînement Root Me / TryHackMe.
+- [x] Compétences groupées par domaine, sans niveaux non confirmés.
+- [x] Aucune certification affichée (pas d'eJPT). Aucune donnée client.
+- [x] Faute « Portefolio » corrigée dans le site.
+- [x] Formulation « alternance, stage » remplacée par la recherche d'un poste.
+- [ ] CV PDF FR et EN : emplacements prêts, fichiers à fournir.
+- [ ] Lien GitHub : à confirmer.
+- [ ] Dates, intitulés, niveaux, chiffres : voir `npm run check:todo`.
+
+### G.4 Ce qui reste pour toi
+
+`npm run check:todo` liste fichier et ligne. Les principaux points :
+
+- **Expérience CGI** : intitulé exact du poste, date de fin d'alternance, véracité de la ligne sur l'infrastructure de sauvegarde, formulation de l'outil de collecte sur le darknet.
+- **Formation** : année d'obtention du diplôme.
+- **Compétences** : niveau Python et Bash, tests d'intrusion (outils et méthodes), réseau et segmentation, anglais C1 et allemand A2, permis B.
+- **Projets** : cluster ou nœud unique, segmentation, automatisation, score Root Me, statut et forme du projet de veille, rôle de chaque agent du QG, et les paragraphes « Ce que j'en retiens » de chaque projet.
+- **Mentions légales** : adresse, téléphone, hébergeur. Vérification de l'adresse de Cloudflare.
+- **Confidentialité** : durée de conservation des journaux, durée de session Cloudflare Access, durée de conservation des e-mails, mécanisme de transfert, fournisseur de messagerie.
+- **Accessibilité** : date et outil d'un test manuel avec lecteur d'écran, état des PDF, délai de réponse.
+- **Divers** : disponibilité, `Canonical` de `security.txt`, renouvellement de `Expires` avant le 30 septembre 2027.
+
+### G.5 Limites de cette vérification
+
+- L'image Docker n'a **pas pu être construite** ici (pas de démon Docker). La configuration nginx a été validée avec un nginx réel (syntaxe, en-têtes, cache, fichiers cachés, 404, `security.txt`), mais pas dans le conteneur.
+- Les tests d'accessibilité sont automatiques. Un test manuel avec lecteur d'écran reste à faire.
+- Lighthouse a été mesuré en local, sans réseau réel ni Cloudflare.
+- La partie IPv6 du `listen` de nginx n'a pas pu être exercée (IPv6 absent du bac à sable), mais la ligne est standard.
