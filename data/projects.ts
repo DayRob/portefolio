@@ -1,50 +1,59 @@
 export interface Project {
   id: string;
   title: string;
-  type: "infra" | "ctf" | "creation";
-  description: string;
-  details: string[];
-  technologies: string[];
+  status: string;
+  context: string;
+  tools: string[];
+  done: string[];
+  learned: string[];
 }
 
 export const projects: Project[] = [
   {
-    id: "proxmox-lab",
-    title: "Infrastructure virtualisée Proxmox pour labs de sécurité",
-    type: "infra",
-    description:
-      "Conception et administration d’une infrastructure virtualisée pour héberger des services et laboratoires de cybersécurité.",
-    details: [
-      "Déploiement d’un cluster Proxmox pour héberger des machines dédiées aux tests d’intrusion et aux simulations d’attaques.",
-      "Mise en place de réseaux segmentés pour isoler les environnements de lab et reproduire des architectures d’entreprise.",
-      "Automatisation partielle de la création de VMs et de snapshots pour faciliter les exercices de break & fix."
+    id: "homelab-proxmox",
+    title: "Homelab Proxmox",
+    status: "En service",
+    context:
+      "Laboratoire personnel d'infrastructure, utilisé pour expérimenter et pour héberger mes propres services, dont ce portfolio et le projet QG.",
+    tools: ["Proxmox", "Linux"],
+    done: [
+      "Auto-hébergement de ce portfolio.",
+      "Architecture : cluster ou nœud unique, réseaux segmentés [À CONFIRMER].",
+      "Création de machines virtuelles et snapshots automatisés [À CONFIRMER]."
     ],
-    technologies: ["Proxmox", "Réseau", "Linux", "Virtualisation"]
+    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
   },
   {
-    id: "ctf-platforms",
-    title: "Pratique sur plateformes de cybersécurité (Root Me, TryHackMe)",
-    type: "ctf",
-    description:
-      "Participation régulière à des défis CTF orientés exploitation de vulnérabilités, forensic et sécurité web.",
-    details: [
-      "Root Me : plus de 500 points sur des challenges variés (web, réseau, cryptographie, forensic).",
-      "TryHackMe : parcours orientés offensive security pour renforcer les compétences en pentest.",
-      "Documentation des scénarios et des techniques utilisées pour capitaliser les apprentissages."
-    ],
-    technologies: ["CTF", "Root Me", "TryHackMe", "Pentest"]
+    id: "culture-cyber",
+    title: "Culture cyber : projet de veille",
+    status: "[À CONFIRMER : statut]",
+    context:
+      "Veille continue pour suivre les menaces, les référentiels et les bonnes pratiques à partir de sources officielles.",
+    tools: ["ANSSI", "CERT-FR", "ENISA", "NIST", "MITRE ATT&CK", "OWASP", "CIS"],
+    done: ["[À COMPLÉTER : forme du projet (outil, notes, newsletter…)]"],
+    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
   },
   {
-    id: "creative-media",
-    title: "Création visuelle et montages vidéos pour une association étudiante",
-    type: "creation",
-    description:
-      "Production de contenus visuels et vidéos pour la communication interne et externe d’une association étudiante.",
-    details: [
-      "Réalisation de visuels pour les réseaux sociaux et événements.",
-      "Montage vidéo et ajout d’animations légères pour valoriser les projets de l’association.",
-      "Collaboration avec des équipes non techniques pour comprendre les besoins et créer des supports adaptés."
+    id: "qg-discord",
+    title: "QG : espace Discord de recherche d'emploi",
+    status: "En cours de construction",
+    context:
+      "Espace Discord qui m'aide dans ma recherche d'emploi grâce à plusieurs agents IA. Chaque agent est un bot distinct, qui utilise Claude via l'API, et l'ensemble est hébergé sur mon homelab.",
+    tools: ["Discord", "API Claude", "Proxmox"],
+    done: [
+      "Un bot par agent, hébergé sur le homelab.",
+      "Rôle précis de chaque agent [À COMPLÉTER]."
     ],
-    technologies: ["Montage vidéo", "Création graphique", "Communication"]
+    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
+  },
+  {
+    id: "ctf",
+    title: "Plateformes d'entraînement : Root Me et TryHackMe",
+    status: "Régulier",
+    context:
+      "Entraînement sur des défis d'exploitation de vulnérabilités, de sécurité web, de réseau, de cryptographie et de forensic.",
+    tools: ["Root Me", "TryHackMe"],
+    done: ["Score Root Me : [À CONFIRMER]."],
+    learned: ["[À COMPLÉTER : ce que ces plateformes m'ont appris]"]
   }
 ];
