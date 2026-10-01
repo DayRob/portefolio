@@ -11,7 +11,7 @@
 
 | # | Constat | Gravité |
 |---|---|---|
-| 1 | **Next.js 14.2.3 : 1 faille critique et 2 hautes** (`npm audit`), dont deux exécutions de code à distance (Image Optimization avec AVIF ; serveurs Windows) et plusieurs empoisonnements de cache / SSRF. À mettre à jour avant toute mise en ligne, et incohérent pour un profil cyber. | Critique |
+| 1 | **Next.js 14.2.3 : 1 faille critique et 2 hautes** (`npm audit`), dont deux avis d'exécution de code à distance (Image Optimization avec fichiers AVIF ; serveurs Windows) et plusieurs empoisonnements de cache / SSRF. Leur exploitabilité réelle dépend de l'hébergement. À mettre à jour avant toute mise en ligne, et incohérent pour un profil cyber. | Critique |
 | 2 | **Le positionnement affiché est « étudiant, GRC et Pentest »**. Aucune mention de CGI, d'EBIOS RM, de recon-ng / crt.sh / Aquatone / OpenVAS / Defender EASM. Le titre « Étudiant ingénieur » est obsolète. | Haute |
 | 3 | **Le formulaire de contact ne délivre rien** : le serveur écrit le message (nom, e-mail, texte) dans les logs et répond « ok ». L'utilisateur voit « Merci, le message a été transmis ». Les messages de recruteurs sont perdus. Aucune information RGPD, aucune validation (une requête non JSON provoque une erreur 500). | Haute |
 | 4 | **Téléphone et e-mail en clair dans le pied de page de chaque page**, plus l'accueil et la page contact. | Haute |
@@ -234,10 +234,10 @@ Mon avis : le gain est faible (aucun secret). À faire seulement si tu veux masq
 
 | Paquet | Gravité | Détail |
 |---|---|---|
-| `next` 14.2.3 | **Critique** | 18 avis dont : RCE sur serveur hébergé sous Windows (GHSA-p293-qw3h-jr36) ; **RCE via l'API d'optimisation d'images avec AVIF (GHSA-2xp9-vwfh-vxw4)** ; SSRF (WebSocket, Server Actions, rewrites) ; empoisonnement de cache RSC ; XSS avec nonces CSP (GHSA-ffhc-5mcf-pf4q) ; déni de service ; divulgation de points d'entrée de Server Functions |
+| `next` 14.2.3 | **Critique** | Au moins 18 avis dont : RCE sur serveur hébergé sous Windows (GHSA-p293-qw3h-jr36) ; **RCE via l'API d'optimisation d'images avec AVIF (GHSA-2xp9-vwfh-vxw4)** ; SSRF (WebSocket, Server Actions, rewrites) ; empoisonnement de cache RSC ; XSS avec nonces CSP (GHSA-ffhc-5mcf-pf4q) ; déni de service ; divulgation de points d'entrée de Server Functions |
 | `postcss` ≤ 8.5.22 (imbriqué dans `next`) | Haute | XSS à la sérialisation, lecture arbitraire de fichiers `.map` |
 
-`npm audit fix --force` propose `next@14.2.35`, **hors de l'intervalle déclaré** (version épinglée). La plupart des avis sont corrigés seulement dans des versions plus récentes (branche 15 ou supérieure). Je validerai le meilleur correctif au moment de l'étape 5 ; si la montée de version est incompatible, c'est un argument de plus pour un export statique (sans runtime serveur, donc sans surface RCE).
+`npm audit fix --force` propose `next@14.2.35`, **hors de l'intervalle déclaré** (version épinglée). Je n'ai pas vérifié quels avis restent ouverts après ce correctif : je le testerai à l'étape 5 (réexécution de `npm audit`) ; si la montée de version est incompatible, c'est un argument de plus pour un export statique (sans runtime serveur, donc sans surface RCE).
 
 ---
 
@@ -265,12 +265,12 @@ Outils : axe-core 4 (règles WCAG 2.0/2.1 A et AA + bonnes pratiques) et Lightho
 
 | Page | Perf. mobile | Perf. bureau | Access. mobile | Access. bureau | Bonnes pratiques | SEO | Violations axe |
 |---|---|---|---|---|---|---|---|
-| `/` | 99 | 100 | **93** | 98 | 100 | 100 | 1 (`heading-order`) |
-| `/experiences` | 99 | 100 | 95 | 100 | 100 | 100 | 0 |
-| `/projets` | 100 | 100 | 95 | 100 | 100 | 100 | 0 |
-| `/contact` | 100 | 100 | 95 | 100 | 100 | 100 | 0 |
+| `/` | 99 | 100 | **93** | 98 | 100 | 100 | 1 à 1280 px (`heading-order`), 2 à 390 px (`heading-order`, `link-name`) |
+| `/experiences` | 99 | 100 | 95 | 100 | 100 | 100 | 0 (bureau) |
+| `/projets` | 100 | 100 | 95 | 100 | 100 | 100 | 0 (bureau) |
+| `/contact` | 100 | 100 | 95 | 100 | 100 | 100 | 0 (bureau) |
 
-Lighthouse signale en plus sur l'accueil : « liens sans nom explicite » (liens uniquement composés d'icônes ou de texte vide) et « ordre des titres ».
+Sur mobile (390 px), axe-core relève sur l'accueil deux violations : **`link-name`** (le lien du logo en en-tête n'a aucun nom accessible, car son texte est masqué sous 640 px) et **`heading-order`** (le titre « Focus cybersécurité » est un `h3` placé avant tout `h2`). Elles expliquent le 93 de l'accueil mobile. Sur les trois autres pages, les 95 viennent du même lien de logo.
 
 Les scores automatiques sont **bons mais trompeurs** : les outils détectent environ un tiers des problèmes RGAA. Constats manuels, par lecture du code :
 
