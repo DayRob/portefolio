@@ -16,3 +16,4 @@ out
 *.pem
 *.key
 .vercel
+deploy/generated
