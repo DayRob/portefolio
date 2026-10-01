@@ -1,0 +1,6 @@
+# Politique de signalement de vulnérabilité (RFC 9116)
+# Ce site est statique et n'a pas de programme de récompense (bug bounty).
+Contact: mailto:cmvilleroy@gmail.com
+Expires: 2027-09-30T22:00:00.000Z
+Preferred-Languages: fr, en
+# Canonical: https://[À COMPLÉTER : domaine]/.well-known/security.txt
