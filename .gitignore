@@ -10,3 +10,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 dist
+out
+*.tsbuildinfo
+.DS_Store
+*.pem
+*.key
+.vercel
+deploy/generated

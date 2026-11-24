@@ -2,125 +2,205 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import des polices */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-/* Styles de base */
-html,
-body {
-  @apply h-full scroll-smooth;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+/* ------------------------------------------------------------------ */
+/* Jetons de design. Contrastes vérifiés (WCAG 2.1) :                  */
+/*   clair  : texte 16:1, texte secondaire 7.5:1, accent 6.6:1         */
+/*   sombre : texte 15.7:1, texte secondaire 8.3:1, accent 9:1         */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #141a22;
+  --muted: #47515f;
+  --border: #c9d0da;
+  --accent: #0a58a8;
+  --accent-fg: #ffffff;
+  --warn: #8a4b00;
+  --code-bg: #eceff3;
 }
 
-body {
-  @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 antialiased;
-  background-attachment: fixed;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --surface: #151b23;
+    --text: #e6eaf0;
+    --muted: #a2adbb;
+    --border: #2d3644;
+    --accent: #79b8f7;
+    --accent-fg: #0d1117;
+    --warn: #f0b45b;
+    --code-bg: #1b2330;
+  }
 }
 
-/* Conteneur principal */
-.section-container {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    @apply bg-bg font-sans text-base leading-relaxed text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold leading-tight tracking-tight text-ink;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  a {
+    @apply text-accent underline underline-offset-4 decoration-1;
+  }
+
+  a:hover {
+    @apply decoration-2;
+  }
+
+  /* Focus visible partout, contraste ≥ 3:1 avec le fond. */
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
 }
 
-/* Carte avec effet verre */
-.card-glass {
-  @apply rounded-3xl border border-slate-800/50 bg-gradient-to-br from-slate-900/80 to-slate-950/90 p-8 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-brand/70 hover:bg-gradient-to-br hover:from-slate-900/90 hover:to-slate-950 hover:shadow-brand/20 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1;
-  background-image: linear-gradient(135deg, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
+  }
+
+  .skip-link {
+    @apply absolute left-4 top-0 z-50 -translate-y-full rounded-b bg-accent px-4 py-3 font-semibold text-accent-fg no-underline;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+
+  .eyebrow {
+    @apply font-mono text-sm uppercase tracking-wider text-muted;
+  }
+
+  .lead {
+    @apply max-w-prose text-lg text-ink;
+  }
+
+  .card {
+    @apply rounded-lg border border-line bg-surface p-5 sm:p-6;
+  }
+
+  .chip {
+    @apply inline-block rounded border border-line bg-code px-2 py-0.5 font-mono text-[0.8125rem] leading-6 text-ink;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md border border-accent px-5 py-2.5 font-semibold no-underline;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-accent-fg;
+  }
+
+  .btn-primary:hover {
+    @apply opacity-90;
+  }
+
+  .btn-secondary {
+    @apply btn bg-transparent text-accent;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-code;
+  }
+
+  .nav-link {
+    @apply rounded px-3 py-2 text-ink no-underline;
+  }
+
+  .nav-link:hover {
+    @apply bg-code;
+  }
+
+  .nav-link[aria-current="page"] {
+    @apply font-semibold underline decoration-2 underline-offset-8;
+    text-decoration-color: var(--accent);
+  }
+
+  /* Information à compléter par l'éditeur : volontairement visible. */
+  .todo {
+    @apply rounded bg-code px-1 font-mono text-[0.85em] text-warn;
+  }
+
+  .prose-legal h2 {
+    @apply mt-10 text-xl;
+  }
+
+  .prose-legal h3 {
+    @apply mt-6 text-base;
+  }
+
+  .prose-legal p,
+  .prose-legal ul,
+  .prose-legal ol {
+    @apply mt-3 max-w-prose;
+  }
+
+  .prose-legal ul {
+    @apply list-disc pl-6;
+  }
+
+  .prose-legal ol {
+    @apply list-decimal pl-6;
+  }
 }
 
-.card-glass:hover::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
+/* Aucune animation pour qui le demande. Le site n'en utilise pas d'essentielle. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Timeline */
-.timeline-line {
-  @apply absolute left-4 top-0 h-full w-px bg-gradient-to-b from-brand/60 via-slate-700 to-transparent sm:left-1/2;
+/* Mode contraste forcé (Windows) : on laisse le système colorer les bordures. */
+@media (forced-colors: active) {
+  .card,
+  .chip,
+  .btn {
+    border-color: CanvasText;
+  }
 }
 
-.timeline-item {
-  @apply relative flex flex-col gap-3 sm:flex-row sm:items-start;
-}
-
-.timeline-point {
-  @apply relative z-10 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand bg-slate-950 shadow-lg;
-}
-
-/* Boutons */
-.btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-dark px-8 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-brand/30 transition-all duration-300 hover:from-brand-light hover:to-brand hover:shadow-xl hover:shadow-brand/40 hover:scale-105 active:scale-95;
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
-}
-
-.btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-slate-700/70 bg-gradient-to-r from-slate-900/50 to-slate-800/50 px-6 py-2.5 text-sm font-medium text-slate-100 backdrop-blur-sm transition-all duration-300 hover:border-brand/60 hover:bg-brand/10 hover:text-brand hover:shadow-lg hover:shadow-brand/20 hover:scale-105 active:scale-95;
-}
-
-/* Badges */
-.badge {
-  @apply inline-flex items-center rounded-full border border-slate-700/60 bg-gradient-to-r from-slate-900/70 to-slate-800/80 px-4 py-2 text-xs font-medium text-slate-100 backdrop-blur-sm transition-all duration-300 hover:border-brand/50 hover:bg-brand/10 hover:text-brand hover:shadow-md hover:shadow-brand/20;
-}
-
-.badge-ghost {
-  @apply border-transparent bg-gradient-to-r from-slate-800/60 to-slate-700/60 hover:from-brand/20 hover:to-purple-500/20;
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.6), 0 0 60px rgba(34, 211, 238, 0.4); }
-}
-
-@keyframes slideInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-glow { animation: glow 3s ease-in-out infinite; }
-.animate-slide-in-up { animation: slideInUp 0.8s ease-out; }
-.animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
-}
-
-/* Particules décoratives */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: float 8s ease-in-out infinite;
-}
-
-.particle:nth-child(odd) { animation-delay: -2s; }
-.particle:nth-child(even) { animation-delay: -4s; }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .card-glass { @apply p-6; }
-  .btn-primary { @apply px-6 py-2.5 text-sm; }
+@media print {
+  .skip-link,
+  header nav {
+    display: none;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
 }

@@ -1,149 +1,63 @@
-"use client";
-
-import { FormEvent, useState } from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { profile } from "../../data/profile";
+import { ObfuscatedEmail } from "../../components/ui/ObfuscatedEmail";
+import { PageHeader } from "../../components/ui/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contacter Côme VILLEROY de GALHAU, ingénieur cybersécurité, par e-mail ou via LinkedIn."
+};
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const payload = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message")
-    };
-
-    try {
-      setStatus("loading");
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("success");
-      (e.target as HTMLFormElement).reset();
-    } catch {
-      setStatus("error");
-    }
-  }
-
   return (
-    <div className="space-y-10 lg:space-y-12">
-      <header className="space-y-3">
-        <p className="text-xs font-medium uppercase tracking-wide text-brand">
-          Contact
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
-          Discutons de votre besoin
-        </h1>
-        <p className="max-w-2xl text-sm text-slate-300">
-          Une alternance, un stage ou un projet cybersécurité ? Envoyez-moi un
-          message via ce formulaire ou directement par e-mail.
-        </p>
-      </header>
+    <div className="space-y-12">
+      <PageHeader eyebrow="Contact" title="Me contacter">
+        Je recherche un poste technique : pentest ou conception d'infrastructure
+        sécurisée. Le plus simple est de m'écrire.
+      </PageHeader>
 
-      <section className="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.5fr)]">
-        <form
-          onSubmit={handleSubmit}
-          className="card-glass space-y-4"
-          autoComplete="off"
-        >
+      <section aria-labelledby="titre-coordonnees" className="card max-w-prose space-y-4">
+        <h2 id="titre-coordonnees" className="text-xl">
+          Coordonnées
+        </h2>
+        <dl className="space-y-4">
           <div>
-            <label
-              htmlFor="name"
-              className="text-xs font-medium text-slate-300"
-            >
-              Nom
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-0 transition focus:border-brand"
-            />
+            <dt className="font-semibold">E-mail</dt>
+            <dd>
+              <ObfuscatedEmail user={profile.email.user} domain={profile.email.domain} />
+              <p className="mt-1 text-sm text-muted">
+                L'adresse est affichée sous forme masquée pour limiter le spam. Le
+                lien cliquable apparaît quand JavaScript est activé.
+              </p>
+            </dd>
           </div>
           <div>
-            <label
-              htmlFor="email"
-              className="text-xs font-medium text-slate-300"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-0 transition focus:border-brand"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="message"
-              className="text-xs font-medium text-slate-300"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none ring-0 transition focus:border-brand"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={status === "loading"}
-          >
-            {status === "loading" ? "Envoi..." : "Envoyer le message"}
-          </button>
-          {status === "success" && (
-            <p className="text-xs text-emerald-400">
-              Merci ! Le message a été transmis (simulé côté serveur).
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-xs text-red-400">
-              Une erreur est survenue. Vous pouvez aussi m’écrire directement à{" "}
-              <a
-                href={`mailto:${profile.email}`}
-                className="underline underline-offset-2"
-              >
-                {profile.email}
+            <dt className="font-semibold">LinkedIn</dt>
+            <dd>
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                Profil LinkedIn de {profile.name}{" "}
+                <span className="sr-only">(s'ouvre dans un nouvel onglet)</span>
               </a>
-              .
-            </p>
-          )}
-        </form>
-
-        <aside className="space-y-4">
-          <div className="card-glass space-y-2">
-            <h2 className="text-sm font-semibold text-slate-50">
-              Coordonnées directes
-            </h2>
-            <p className="text-sm text-slate-300">
-              Email :{" "}
-              <a
-                href={`mailto:${profile.email}`}
-                className="underline-offset-2 hover:text-slate-50 hover:underline"
-              >
-                {profile.email}
-              </a>
-            </p>
-            <p className="text-sm text-slate-300">Téléphone : {profile.phone}</p>
-            <p className="text-sm text-slate-300">
-              Localisation : {profile.location}
-            </p>
+            </dd>
           </div>
-        </aside>
+          <div>
+            <dt className="font-semibold">Téléphone</dt>
+            <dd>Communiqué sur demande, après un premier échange par e-mail.</dd>
+          </div>
+          <div>
+            <dt className="font-semibold">Localisation</dt>
+            <dd>{profile.location}</dd>
+          </div>
+        </dl>
       </section>
+
+      <p className="max-w-prose text-sm text-muted">
+        Les informations contenues dans votre e-mail servent uniquement à vous
+        répondre. Voir la{" "}
+        <Link href="/confidentialite/">politique de confidentialité</Link>.
+      </p>
     </div>
   );
 }

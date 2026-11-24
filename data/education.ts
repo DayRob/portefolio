@@ -3,33 +3,28 @@ export interface EducationItem {
   period: string;
   title: string;
   school: string;
-  location: string;
-  level: string;
+  location?: string;
 }
 
 export const education: EducationItem[] = [
   {
-    id: "ics-cpe",
-    period: "2024 – 2026",
-    title: "Ecole d’ingénieur – formation ICS (Informatique et Cybersécurité)",
+    id: "cpe-ics",
+    period: "2024 – 2026 [À CONFIRMER]",
+    title: "Diplôme d'ingénieur, Informatique et Cybersécurité (ICS)",
     school: "CPE Lyon",
-    location: "Villeurbanne 69100",
-    level: "Cycle ingénieur – cybersécurité"
+    location: "Villeurbanne"
   },
   {
     id: "bts-sio",
     period: "2021 – 2023",
     title: "BTS SIO option SLAM (Solutions Logicielles et Applications Métiers)",
     school: "ICOF",
-    location: "Lyon 69005",
-    level: "Bac +2 – développement et systèmes"
+    location: "Lyon"
   },
   {
     id: "bac-sti2d",
     period: "2019 – 2021",
-    title: "BAC STI2D option SIN (Systèmes d’Information et Numérique)",
-    school: "Lycée St Erembert",
-    location: "St Germain en Laye 78100",
-    level: "Baccalauréat technologique"
+    title: "Baccalauréat STI2D option SIN (Systèmes d'Information et Numérique)",
+    school: "Lycée Saint-Erembert"
   }
 ];

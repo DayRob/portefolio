@@ -1,75 +1,62 @@
-export interface SkillCategory {
+// Pas de niveaux (« Avancé », « Expert »…) tant qu'ils ne sont pas confirmés.
+
+export interface SkillGroup {
   id: string;
   label: string;
-  skills: {
-    name: string;
-    level?: "Débutant" | "Intermédiaire" | "Avancé" | "Expert";
-    description?: string;
-  }[];
+  summary: string;
+  items: string[];
+  complementary?: boolean;
 }
 
-export const skillCategories: SkillCategory[] = [
+export const skillGroups: SkillGroup[] = [
   {
-    id: "cyber",
-    label: "Cybersécurité",
-    skills: [
-      {
-        name: "Audit de sécurité, tests d’intrusion, analyse de vulnérabilités",
-        level: "Avancé"
-      },
-      {
-        name: "Surveillance et investigation de menaces (veille, forensic, threat intelligence)",
-        level: "Intermédiaire"
-      },
-      {
-        name: "Renforcement et conformité des systèmes (bonnes pratiques ANSSI / OWASP)",
-        level: "Intermédiaire"
-      }
+    id: "offensif",
+    label: "Reconnaissance et tests de vulnérabilités",
+    summary:
+      "Cartographier la surface d'attaque en passif, puis valider par un scan actif.",
+    items: [
+      "recon-ng",
+      "crt.sh",
+      "Aquatone",
+      "Microsoft Defender EASM",
+      "OpenVAS",
+      "Tests d'intrusion : outils et méthodes [À COMPLÉTER]"
     ]
   },
   {
-    id: "systems",
-    label: "Systèmes & Virtualisation",
-    skills: [
-      {
-        name: "Administration Linux / Windows",
-        level: "Intermédiaire"
-      },
-      {
-        name: "Infrastructure virtualisée sous Proxmox pour environnements de test",
-        level: "Intermédiaire"
-      }
+    id: "infra",
+    label: "Infrastructure et systèmes sécurisés",
+    summary: "Concevoir, héberger et durcir des environnements.",
+    items: [
+      "Proxmox (homelab)",
+      "SSH / TLS : audit et durcissement",
+      "Administration Linux et Windows",
+      "Réseau et segmentation [À CONFIRMER]"
     ]
+  },
+  {
+    id: "veille",
+    label: "Veille et référentiels",
+    summary: "Rester à jour sur les menaces et les bonnes pratiques.",
+    items: ["ANSSI", "CERT-FR", "ENISA", "NIST", "MITRE ATT&CK", "OWASP", "CIS"]
   },
   {
     id: "dev",
-    label: "Développement",
-    skills: [
-      {
-        name: "Développement web et applicatif (PHP, C, Java)",
-        level: "Intermédiaire"
-      }
-    ]
+    label: "Développement et scripts",
+    summary: "Automatiser et outiller.",
+    items: ["PHP", "C", "Java", "Python [À CONFIRMER]", "Bash [À CONFIRMER]"]
   },
   {
-    id: "lang",
+    id: "grc",
+    label: "Analyse de risque (compétence complémentaire)",
+    summary: "Comprendre le risque métier derrière un constat technique.",
+    items: ["EBIOS RM (ANSSI)", "Dossiers d'analyse de risque", "Homologation de SI"],
+    complementary: true
+  },
+  {
+    id: "langues",
     label: "Langues",
-    skills: [
-      {
-        name: "Anglais – niveau C1 (Cambridge)"
-      },
-      {
-        name: "Allemand – niveau A2"
-      }
-    ]
-  },
-  {
-    id: "other",
-    label: "Autres",
-    skills: [
-      {
-        name: "Permis B depuis 2022"
-      }
-    ]
+    summary: "",
+    items: ["Anglais : C1, Cambridge [À CONFIRMER]", "Allemand : A2 [À CONFIRMER]"]
   }
 ];
