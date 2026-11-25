@@ -4,3 +4,4 @@ out
 .git
 deploy/generated
 *.md
+venv
