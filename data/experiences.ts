@@ -17,15 +17,15 @@ export const experiences: Experience[] = [
     id: "cgi-alternance",
     company: "CGI (ex-Apside)",
     note: "Apside a été rachetée par CGI pendant l'alternance.",
-    role: "Alternant cybersécurité [À CONFIRMER : intitulé exact du poste]",
+    role: "Alternant consultant cybersécurité",
     kind: "Alternance",
-    period: "Septembre 2024 – [À CONFIRMER : date de fin]",
+    period: "Septembre 2024 – Septembre 2026",
     location: "Paris",
     highlights: [
       "Reconnaissance passive et cartographie de la surface d'attaque (recon-ng, crt.sh, Microsoft Defender EASM, Aquatone), suivies d'un scan actif de vulnérabilités avec OpenVAS.",
       "Analyse de risque selon la méthode EBIOS RM de l'ANSSI et rédaction de dossiers d'analyse de risque.",
       "Préparation d'ateliers client et accompagnement à l'homologation de systèmes d'information.",
-      "Déploiement d'une infrastructure de sauvegarde sur le système d'information d'une entreprise. [À CONFIRMER]"
+      "Mise en place d'une chaîne de sauvegarde hebdomadaire des serveurs d'un client : export des sauvegardes depuis un bastion vers un support dédié, purge par script, puis restauration de la dernière sauvegarde lors d'un scénario de crise."
     ],
     tools: ["recon-ng", "crt.sh", "Aquatone", "Defender EASM", "OpenVAS", "EBIOS RM"]
   },
@@ -37,8 +37,8 @@ export const experiences: Experience[] = [
     period: "Juin – Août 2024",
     location: "Paris",
     highlights: [
-      "Outil de veille informationnelle automatisé pour une newsletter client. [À CONFIRMER]",
-      "Outil de collecte web pour suivre les mentions d'une entreprise sur des forums du darknet. [À CONFIRMER : formulation à valider]",
+      "Outil de veille informationnelle automatisé pour une newsletter client.",
+      "Outil de collecte web pour suivre les mentions d'une entreprise sur des forums du darknet.",
       "Initiation au test d'intrusion."
     ],
     tools: ["Veille", "Automatisation"]

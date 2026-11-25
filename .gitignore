@@ -17,3 +17,4 @@ out
 *.key
 .vercel
 deploy/generated
+venv

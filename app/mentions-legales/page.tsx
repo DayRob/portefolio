@@ -25,15 +25,18 @@ export default function LegalNoticePage() {
         </p>
         <ul>
           <li>
-            Adresse : <span className="todo">[À COMPLÉTER : adresse postale]</span>
-          </li>
-          <li>
-            Téléphone : <span className="todo">[À COMPLÉTER : numéro]</span>
-          </li>
-          <li>
             E-mail : <ObfuscatedEmail user={profile.email.user} domain={profile.email.domain} />
           </li>
+          <li>Localisation : {profile.location}</li>
         </ul>
+        <p>
+          Ce site est édité par un particulier, sans activité commerciale.
+          L'article 6 III-2 de la LCEN permet à un éditeur non professionnel de
+          ne pas publier son adresse postale ni son numéro de téléphone. Ces
+          informations sont communiquées sur demande à l'adresse e-mail
+          ci-dessus, ainsi qu'à toute autorité judiciaire qui en ferait la
+          demande.
+        </p>
 
         <h2>Directeur de la publication</h2>
         <p>{profile.name}.</p>
@@ -41,27 +44,16 @@ export default function LegalNoticePage() {
         <h2>Hébergement</h2>
         <p>
           Le site est auto-hébergé par son éditeur sur un serveur personnel
-          (virtualisation Proxmox).
+          (virtualisation Proxmox). L'hébergeur est donc l'éditeur lui-même,
+          joignable aux coordonnées indiquées ci-dessus.
         </p>
-        <ul>
-          <li>
-            Hébergeur : <span className="todo">[À COMPLÉTER : nom ou précision « l'éditeur lui-même »]</span>
-          </li>
-          <li>
-            Adresse : <span className="todo">[À COMPLÉTER]</span>
-          </li>
-          <li>
-            Téléphone : <span className="todo">[À COMPLÉTER]</span>
-          </li>
-        </ul>
 
         <h2>Service de protection et de diffusion</h2>
         <p>
-          Le trafic du site transite par le service Cloudflare (filtrage,
-          protection contre les attaques et contrôle d'accès). Éditeur du service :
-          Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis{" "}
-          <span className="todo">[À CONFIRMER : adresse à vérifier sur cloudflare.com]</span>.
-          Les traitements de données associés sont décrits dans la{" "}
+          Le trafic du site transite par le service Cloudflare (filtrage et
+          protection contre les attaques). Éditeur du service : Cloudflare, Inc.,
+          101 Townsend Street, San Francisco, CA 94107, États-Unis. Les
+          traitements de données associés sont décrits dans la{" "}
           <Link href="/confidentialite/">politique de confidentialité</Link>.
         </p>
 
@@ -89,12 +81,12 @@ export default function LegalNoticePage() {
 
         <h2>Données personnelles</h2>
         <p>
-          Ce site ne dépose aucun cookie de suivi et ne réalise aucune mesure
-          d'audience. Pour le détail et l'exercice de vos droits, consultez la{" "}
+          Ce site ne dépose aucun cookie et ne réalise aucune mesure d'audience.
+          Pour le détail et l'exercice de vos droits, consultez la{" "}
           <Link href="/confidentialite/">politique de confidentialité</Link>.
         </p>
 
-        <p className="text-sm text-muted">Dernière mise à jour : 1er octobre 2026.</p>
+        <p className="text-sm text-muted">Dernière mise à jour : 25 novembre 2026.</p>
       </div>
     </div>
   );

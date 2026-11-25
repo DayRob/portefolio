@@ -64,7 +64,7 @@ export default function HomePage() {
             <div>
               <dt className="eyebrow">Disponibilité</dt>
               <dd>
-                <Marked text="[À CONFIRMER]" />
+                {profile.availability}
               </dd>
             </div>
             <div>

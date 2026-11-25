@@ -9,7 +9,7 @@ export interface EducationItem {
 export const education: EducationItem[] = [
   {
     id: "cpe-ics",
-    period: "2024 – 2026 [À CONFIRMER]",
+    period: "2023 – 2026",
     title: "Diplôme d'ingénieur, Informatique et Cybersécurité (ICS)",
     school: "CPE Lyon",
     location: "Villeurbanne"

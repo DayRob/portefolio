@@ -7,10 +7,5 @@ export const cvFiles = [
     lang: "fr",
     file: "cv-fr.pdf",
     label: "Télécharger le CV (PDF, français)"
-  },
-  {
-    lang: "en",
-    file: "cv-en.pdf",
-    label: "Download the CV (PDF, English)"
   }
 ] as const;

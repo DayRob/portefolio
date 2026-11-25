@@ -20,7 +20,7 @@ export const skillGroups: SkillGroup[] = [
       "Aquatone",
       "Microsoft Defender EASM",
       "OpenVAS",
-      "Tests d'intrusion : outils et méthodes [À COMPLÉTER]"
+      "Tests d'intrusion : nmap, Burp Suite, Metasploit (entraînement sur Root Me et TryHackMe)"
     ]
   },
   {
@@ -31,7 +31,7 @@ export const skillGroups: SkillGroup[] = [
       "Proxmox (homelab)",
       "SSH / TLS : audit et durcissement",
       "Administration Linux et Windows",
-      "Réseau et segmentation [À CONFIRMER]"
+      "Réseau et segmentation"
     ]
   },
   {
@@ -44,7 +44,7 @@ export const skillGroups: SkillGroup[] = [
     id: "dev",
     label: "Développement et scripts",
     summary: "Automatiser et outiller.",
-    items: ["PHP", "C", "Java", "Python [À CONFIRMER]", "Bash [À CONFIRMER]"]
+    items: ["Bash", "Python (notions)", "PHP", "C", "Java"]
   },
   {
     id: "grc",
@@ -57,6 +57,6 @@ export const skillGroups: SkillGroup[] = [
     id: "langues",
     label: "Langues",
     summary: "",
-    items: ["Anglais : C1, Cambridge [À CONFIRMER]", "Allemand : A2 [À CONFIRMER]"]
+    items: ["Anglais : B2, Cambridge B2 First", "Allemand : A2"]
   }
 ];
