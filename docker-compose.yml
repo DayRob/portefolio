@@ -3,9 +3,14 @@ services:
     build: .
     container_name: portfolio
     restart: unless-stopped
-    # Exposé uniquement en local : Cloudflare (tunnel ou reverse proxy) joint le conteneur.
+    # cloudflared tourne sur l'hote Proxmox, pas dans ce conteneur LXC : le port
+    # doit donc etre joignable depuis le LAN, et non sur la seule boucle locale.
+    # Le site est entierement statique et public, l'exposition LAN n'ajoute rien.
+    # L'IP du LXC est en DHCP : on ecoute sur toutes les interfaces plutot que de
+    # figer une adresse. Pensez a une reservation DHCP, car la regle d'ingress
+    # du tunnel (dashboard Cloudflare Zero Trust) code l'IP en dur.
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:8080"
     read_only: true
     tmpfs:
       - /tmp
