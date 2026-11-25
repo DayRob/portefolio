@@ -13,7 +13,7 @@ import { PageHeader } from "../../components/ui/PageHeader";
 export const metadata: Metadata = {
   title: "CV",
   description:
-    "CV de Côme VILLEROY de GALHAU, ingénieur cybersécurité : téléchargement PDF (français et anglais) et version HTML équivalente."
+    "CV de Côme VILLEROY de GALHAU, ingénieur cybersécurité : téléchargement PDF et version HTML équivalente."
 };
 
 // Détection au build : un CV n'est proposé que si le fichier existe dans public/cv/.
@@ -40,15 +40,10 @@ export default function CvPage() {
                 <a href={`/cv/${f.file}`} className="btn-primary" download>
                   {f.label}
                 </a>
-              ) : f.lang === "fr" ? (
-                <p className="text-muted">
-                  CV français : bientôt disponible{" "}
-                  <span className="todo">[À COMPLÉTER : déposer public/cv/cv-fr.pdf]</span>
-                </p>
               ) : (
                 <p className="text-muted">
-                  English CV: to be aligned with the French version{" "}
-                  <span className="todo">[À CONFIRMER]</span>
+                  Le CV en PDF sera disponible prochainement. La version HTML
+                  ci-dessous contient les mêmes informations.
                 </p>
               )}
             </li>
@@ -121,8 +116,8 @@ export default function CvPage() {
         <div className="space-y-2">
           <h3>Divers</h3>
           <p className="text-muted">
-            Permis B (depuis 2022) <span className="todo">[À CONFIRMER]</span>.
-            Centres d'intérêt : {hobbies.map((h) => h.label).join(", ")}.
+            Permis B (depuis 2022). Centres d'intérêt :{" "}
+            {hobbies.map((h) => h.label).join(", ")}.
           </p>
         </div>
       </section>

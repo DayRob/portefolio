@@ -7,7 +7,7 @@ import { PageHeader } from "../../components/ui/PageHeader";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contacter Côme VILLEROY de GALHAU, ingénieur cybersécurité, par e-mail ou via LinkedIn."
+    "Contacter Côme VILLEROY de GALHAU, ingénieur cybersécurité, par e-mail, via LinkedIn ou GitHub."
 };
 
 export default function ContactPage() {
@@ -42,6 +42,17 @@ export default function ContactPage() {
               </a>
             </dd>
           </div>
+          {profile.github ? (
+            <div>
+              <dt className="font-semibold">GitHub</dt>
+              <dd>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer">
+                  Profil GitHub de {profile.name}{" "}
+                  <span className="sr-only">(s'ouvre dans un nouvel onglet)</span>
+                </a>
+              </dd>
+            </div>
+          ) : null}
           <div>
             <dt className="font-semibold">Téléphone</dt>
             <dd>Communiqué sur demande, après un premier échange par e-mail.</dd>

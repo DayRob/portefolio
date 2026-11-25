@@ -21,10 +21,10 @@ export default function AccessibilityPage() {
       <div className="prose-legal">
         <h2>État de conformité</h2>
         <p>
-          Le site n'a pas fait l'objet d'un audit RGAA complet par un tiers. Il n'est
-          donc pas déclaré conforme. Il est conçu pour respecter les critères du niveau
-          AA, et vérifié comme indiqué ci-dessous.{" "}
-          <span className="todo">[À CONFIRMER : état à mettre à jour après un audit externe]</span>
+          Le site n'a pas fait l'objet d'un audit RGAA complet par un tiers, et
+          aucun audit externe n'est prévu à ce jour. Il n'est donc pas déclaré
+          conforme. Il est conçu pour respecter les critères du niveau AA, et
+          vérifié comme indiqué ci-dessous.
         </p>
 
         <h2>Ce qui est en place</h2>
@@ -47,20 +47,15 @@ export default function AccessibilityPage() {
           <li>Contrôle automatisé de la navigation au clavier et du lien d'évitement.</li>
         </ul>
         <p>
-          Ces outils ne détectent qu'une partie des problèmes. Des vérifications manuelles
-          avec lecteur d'écran restent à faire{" "}
-          <span className="todo">[À COMPLÉTER : date et outil de test manuel]</span>.
+          Ces outils ne détectent qu'une partie des problèmes. Aucune vérification
+          manuelle au lecteur d'écran n'a été réalisée à ce jour.
         </p>
 
         <h2>Contenus non accessibles connus</h2>
         <ul>
           <li>
-            Les CV au format PDF : leur accessibilité n'est pas garantie{" "}
-            <span className="todo">[À CONFIRMER : PDF balisé ou non]</span>. La version
+            Le CV au format PDF n'est pas balisé pour l'accessibilité. La version
             HTML de la page CV fournit les mêmes informations.
-          </li>
-          <li>
-            Le CV en anglais n'est pas encore aligné sur la version française.
           </li>
         </ul>
 
@@ -72,8 +67,8 @@ export default function AccessibilityPage() {
           Si vous rencontrez un défaut d'accessibilité, ou si vous avez besoin d'une
           information dans un autre format, écrivez à{" "}
           <ObfuscatedEmail user={profile.email.user} domain={profile.email.domain} />.
-          Merci de préciser la page concernée et l'outil utilisé. Délai de réponse :{" "}
-          <span className="todo">[À CONFIRMER]</span>.
+          Merci de préciser la page concernée et l'outil utilisé. Délai de réponse :
+          sous un mois.
         </p>
 
         <h2>Voies de recours</h2>
@@ -90,7 +85,7 @@ export default function AccessibilityPage() {
           </a>
           .
         </p>
-        <p className="text-sm text-muted">Dernière mise à jour : 1er octobre 2026.</p>
+        <p className="text-sm text-muted">Dernière mise à jour : 25 novembre 2026.</p>
       </div>
     </div>
   );

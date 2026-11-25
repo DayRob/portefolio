@@ -32,6 +32,17 @@ export function SiteFooter() {
                 Profil LinkedIn <span className="sr-only">(s'ouvre dans un nouvel onglet)</span>
               </a>
             </li>
+            {profile.github ? (
+              <li>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Profil GitHub <span className="sr-only">(s'ouvre dans un nouvel onglet)</span>
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
       </div>

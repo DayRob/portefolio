@@ -18,20 +18,27 @@ export const projects: Project[] = [
     tools: ["Proxmox", "Linux"],
     done: [
       "Auto-hébergement de ce portfolio.",
-      "Architecture : cluster ou nœud unique, réseaux segmentés [À CONFIRMER].",
-      "Création de machines virtuelles et snapshots automatisés [À CONFIRMER]."
+      "Architecture : nœud Proxmox unique, services isolés en conteneurs LXC ; segmentation réseau à mettre en place.",
+      "Création de machines virtuelles et de conteneurs LXC, avec snapshots manuels avant chaque modification."
     ],
-    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
+    learned: [
+      "Tenir un service en production m'a appris l'exploitation : sauvegardes, reverse proxy, certificats TLS et cloisonnement des services."
+    ]
   },
   {
     id: "culture-cyber",
     title: "Culture cyber : projet de veille",
-    status: "[À CONFIRMER : statut]",
+    status: "En cours de construction",
     context:
       "Veille continue pour suivre les menaces, les référentiels et les bonnes pratiques à partir de sources officielles.",
     tools: ["ANSSI", "CERT-FR", "ENISA", "NIST", "MITRE ATT&CK", "OWASP", "CIS"],
-    done: ["[À COMPLÉTER : forme du projet (outil, notes, newsletter…)]"],
-    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
+    done: [
+      "Veille automatisée hébergée sur mon homelab, alimentée par les bulletins du CERT-FR, de l'ANSSI et de l'ENISA.",
+      "Suivi des référentiels NIST, MITRE ATT&CK, OWASP et CIS."
+    ],
+    learned: [
+      "Distinguer le bruit de l'information utile, et remonter d'une vulnérabilité publiée à son impact sur une infrastructure donnée."
+    ]
   },
   {
     id: "qg-discord",
@@ -42,9 +49,11 @@ export const projects: Project[] = [
     tools: ["Discord", "API Claude", "Proxmox"],
     done: [
       "Un bot par agent, hébergé sur le homelab.",
-      "Rôle précis de chaque agent [À COMPLÉTER]."
+      "Un agent par étape du processus de candidature : sourcing, analyse d'offre, rédaction et suivi."
     ],
-    learned: ["[À COMPLÉTER : ce que ce projet m'a appris]"]
+    learned: [
+      "Concevoir et orchestrer des agents spécialisés : un gain de temps réel sur les tâches répétitives, et une charge mentale allégée sur le suivi des candidatures."
+    ]
   },
   {
     id: "ctf",
@@ -53,7 +62,9 @@ export const projects: Project[] = [
     context:
       "Entraînement sur des défis d'exploitation de vulnérabilités, de sécurité web, de réseau, de cryptographie et de forensic.",
     tools: ["Root Me", "TryHackMe"],
-    done: ["Score Root Me : [À CONFIRMER]."],
-    learned: ["[À COMPLÉTER : ce que ces plateformes m'ont appris]"]
+    done: ["Score Root Me : plus de 500 points."],
+    learned: [
+      "Une méthode : énumérer avant d'exploiter, documenter chaque étape, et reconnaître une classe de vulnérabilité plutôt qu'un exploit isolé."
+    ]
   }
 ];

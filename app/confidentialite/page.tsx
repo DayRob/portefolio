@@ -9,14 +9,7 @@ const treatments = [
     name: "Journaux techniques du serveur",
     data: "Adresse IP, date et heure, page demandée, type de navigateur.",
     purpose: "Sécurité et bon fonctionnement du site. Intérêt légitime (art. 6.1.f du RGPD).",
-    retention: "[À COMPLÉTER : durée de rétention des journaux nginx]"
-  },
-  {
-    name: "Contrôle d'accès Cloudflare",
-    data: "Cookie technique d'authentification, adresse IP, identifiant de session.",
-    purpose:
-      "Réserver l'accès au site à des personnes autorisées pendant la phase privée. Cookie strictement nécessaire, exempté de consentement. Intérêt légitime (art. 6.1.f).",
-    retention: "[À CONFIRMER : durée de session configurée dans Cloudflare Access]"
+    retention: "30 jours, puis suppression automatique par le journal système."
   },
   {
     name: "Échanges par e-mail",
@@ -24,7 +17,7 @@ const treatments = [
     purpose:
       "Répondre à votre message, notamment pour une proposition d'emploi. Intérêt légitime (art. 6.1.f) ou mesures précontractuelles (art. 6.1.b).",
     retention:
-      "Le temps nécessaire à l'échange, puis [À CONFIRMER : durée maximale, par exemple 2 ans]."
+      "Le temps nécessaire à l'échange, puis un an après le dernier contact."
   }
 ];
 
@@ -52,7 +45,7 @@ export default function PrivacyPage() {
 
         <h2>2. Ce que ce site ne fait pas</h2>
         <ul>
-          <li>Aucun cookie de suivi, publicitaire ou de mesure d'audience.</li>
+          <li>Aucun cookie, ni de suivi, ni de fonctionnement.</li>
           <li>Aucun outil d'analyse (pas de Google Analytics, pas de pixel).</li>
           <li>Aucun formulaire de collecte de données sur le site.</li>
           <li>
@@ -90,14 +83,16 @@ export default function PrivacyPage() {
         <ul>
           <li>L'éditeur du site, seul destinataire des données.</li>
           <li>
-            Cloudflare, Inc., prestataire technique de protection et de contrôle d'accès,
+            Cloudflare, Inc., prestataire technique de protection et de diffusion,
             qui peut traiter des données hors de l'Union européenne. Ces transferts
-            reposent sur les garanties prévues par le RGPD{" "}
-            <span className="todo">[À CONFIRMER : mécanisme de transfert indiqué par Cloudflare]</span>.
+            reposent sur la certification de Cloudflare au titre du cadre de
+            protection des données UE–États-Unis (Data Privacy Framework),
+            complétée par les clauses contractuelles types de la Commission
+            européenne (décision d'exécution 2021/914).
           </li>
           <li>
-            Le fournisseur de messagerie de l'éditeur, pour les e-mails que vous
-            envoyez <span className="todo">[À CONFIRMER : fournisseur]</span>.
+            Google Ireland Limited (Gmail), fournisseur de la messagerie de
+            l'éditeur, pour les e-mails que vous envoyez.
           </li>
         </ul>
         <p>Vos données ne sont ni vendues ni cédées à des fins commerciales.</p>
@@ -134,7 +129,7 @@ export default function PrivacyPage() {
           Cette politique peut évoluer, par exemple si une mesure d'audience sans
           cookie était ajoutée. La date de mise à jour figure ci-dessous.
         </p>
-        <p className="text-sm text-muted">Dernière mise à jour : 1er octobre 2026.</p>
+        <p className="text-sm text-muted">Dernière mise à jour : 25 novembre 2026.</p>
       </div>
     </div>
   );
